@@ -1,11 +1,11 @@
-import fitz
+import pymupdf
 
 from app.rag.extractor import extract_pages
 
 
 def test_extract_pages(tmp_path) -> None:
     pdf_path = tmp_path / "sample.pdf"
-    doc = fitz.open()
+    doc = pymupdf.open()
     page = doc.new_page()
     page.insert_text((72, 72), "Eligibility: age 21 to 24")
     doc.save(pdf_path)

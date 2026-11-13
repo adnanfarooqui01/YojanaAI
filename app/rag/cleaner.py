@@ -7,4 +7,5 @@ def clean_text(text: str) -> str:
     text = re.sub(r"-\n(\w)", r"\1", text)         # join words split by hyphen at line end
     text = re.sub(r"\n{3,}", "\n\n", text)         # max one blank line
     text = re.sub(r"(?<!\n)\n(?!\n)", " ", text)   # single newline inside a paragraph -> space
+    text = re.sub(r" {2,}", " ", text)
     return text.strip()

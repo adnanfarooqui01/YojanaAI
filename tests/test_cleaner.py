@@ -9,3 +9,7 @@ def test_joins_broken_lines_and_collapses_spaces() -> None:
 
 def test_keeps_paragraph_breaks() -> None:
     assert clean_text("Para one.\n\nPara two.") == "Para one.\n\nPara two."
+
+
+def test_collapses_spaces_created_when_joining_lines() -> None:
+    assert clean_text("A \n B") == "A B"

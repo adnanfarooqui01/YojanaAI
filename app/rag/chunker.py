@@ -3,9 +3,13 @@ from pathlib import Path
 from app.rag.schemas import Chunk, Page
 
 
-def split_text(text: str, chunk_size: int = 800, overlap: int = 150) -> list[str]:
+def split_text(
+    text: str, chunk_size: int = 800, overlap: int = 150, min_chars: int = 50
+) -> list[str]:
     if overlap >= chunk_size:
         raise ValueError("overlap must be smaller than chunk_size")
+    if min_chars < 0:
+        raise ValueError("min_chars must be non-negative")
 
     chunks: list[str] = []
     start = 0
@@ -23,7 +27,7 @@ def split_text(text: str, chunk_size: int = 800, overlap: int = 150) -> list[str
                     end = start + space
 
         piece = text[start:end].strip()
-        if piece:
+        if len(piece) >= min_chars:
             chunks.append(piece)
         if end >= len(text):
             break
