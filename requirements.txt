@@ -2,3 +2,5 @@ fastapi
 uvicorn
 pydantic-settings
 pymupdf
+sentence-transformers
+qdrant-client
